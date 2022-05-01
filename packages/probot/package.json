@@ -1,6 +1,6 @@
 {
   "name": "@yieldbits/probot",
-  "version": "0.0.1-rc.9",
+  "version": "0.0.1-rc.10",
   "description": "a probot integration library for nestjs projects",
   "keywords": [
     "probot",
