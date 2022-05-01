@@ -1,0 +1,64 @@
+{
+  "name": "@yieldbits/probot",
+  "version": "0.0.0",
+  "description": "a probot integration library for nestjs projects",
+  "keywords": [
+    "probot",
+    "nestjs",
+    "library"
+  ],
+  "author": "Akshay Singh <8209379+akshayKrSingh@users.noreply.github.com>",
+  "homepage": "https://github.com/yieldbits/nestjs.git",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yieldbits/nestjs.git"
+  },
+  "scripts": {
+    "build": "tsc --build tsconfig.build.json",
+    "build:watch": "tsc --build tsconfig.build.json --watch",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/yieldbits/nestjs/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "body-parser": "^1.19.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  "dependencies": {
+    "@golevelup/nestjs-discovery": "^3.0.0",
+    "@octokit/auth-app": "^3.6.1",
+    "@octokit/rest": "^18.12.0",
+    "@octokit/webhooks": "^9.24.0",
+    "@probot/get-private-key": "^1.1.1",
+    "lodash": "^4.17.21",
+    "probot": "^12.2.2",
+    "smee-client": "^1.2.2",
+    "uuid": "^8.3.2"
+  }
+}
