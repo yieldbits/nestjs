@@ -54,6 +54,7 @@
   "scripts": {
     "commit": "yarn run git-cz",
     "lerna:publish": "yarn build && lerna publish -m 'chore: publish' --yes --no-verify-access",
+    "lerna:version": "yarn build && lerna version -m 'chore: publish' --yes --no-verify-access",
     "lerna:prerelease": "yarn build && lerna publish prerelease --preid rc -m 'chore: publish prerelease'",
     "doc:watch": "lerna run build:watch --scope '@yieldbits/nestjs-website'",
     "doc:build": "lerna run build --scope '@yieldbits/nestjs-website'",
