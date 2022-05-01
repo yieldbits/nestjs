@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - packages/**
 
 jobs:
   publish:
@@ -19,4 +21,6 @@ jobs:
         run: |
           git config --global user.email "team@spheres.cloud"
           git config --global user.name "ci@yieldbits"
-      - run: yarn lerna:version
+      - run: yarn build
+      - run: yarn lerna version --conventional-commits --conventional-graduate --yes
+      - run: yarn lerna publish from-git --yes --no-verify-access
