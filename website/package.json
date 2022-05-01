@@ -1,6 +1,6 @@
 {
   "name": "@yieldbits/nestjs-website",
-  "version": "0.0.1-rc.2",
+  "version": "0.0.1-rc.3",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
