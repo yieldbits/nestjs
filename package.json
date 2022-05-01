@@ -53,7 +53,7 @@
   },
   "scripts": {
     "commit": "yarn run git-cz",
-    "lerna:publish": "yarn build && lerna publish -m 'chore: publish'",
+    "lerna:publish": "yarn build && lerna publish -m 'chore: publish' --yes",
     "lerna:prerelease": "yarn build && lerna publish prerelease --preid rc -m 'chore: publish prerelease'",
     "build": " lerna run build --ignore 'example' --ignore '@yieldbits/nestjs-website'",
     "build:watch": "lerna run --parallel build:watch",
