@@ -2,7 +2,7 @@
 
 | Packages          | Description                              | Version                                                | Changelog                                                                               |
 | :---------------- | ---------------------------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| @yieldbits/nestjs | A NestJS module to integrate with probot | ![npm](https://img.shields.io/npm/v/@yieldbits/probot) | [changelog](https://github.com/yieldbits/nestjs/blob/main/packages/probot/CHANGELOG.md) |
+| @yieldbits/probot | A NestJS module to integrate with probot | ![npm](https://img.shields.io/npm/v/@yieldbits/probot) | [changelog](https://github.com/yieldbits/nestjs/blob/main/packages/probot/CHANGELOG.md) |
 
 ## Contribute
 

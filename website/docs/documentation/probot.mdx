@@ -1,0 +1,121 @@
+---
+sidebar_position: 1
+sidebar_label: Integrate Probot with NestJS
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Integrate Probot with NestJS
+
+:::caution
+This section is still under construction.
+We will be adding more description of the probot workflow slowly to this page.
+In the meantime, this should help you get started.
+
+You can also help us by contributing [**here**](https://github.com/yieldbits/nestjs).
+:::
+
+## @yieldbits/probot
+
+<p align="center">
+<a href="https://www.npmjs.com/package/@yieldbits/probot"><img src="https://img.shields.io/npm/v/@yieldbits/probot.svg?style=flat" alt="version" /></a>
+<a href="https://www.npmjs.com/package/@yieldbits/probot"><img alt="downloads" src="https://img.shields.io/npm/dt/@yieldbits/probot.svg?style=flat" /></a>
+<img alt="license" src="https://img.shields.io/npm/l/@yieldbits/probot.svg" />
+</p>
+
+## Description
+
+This module provides access to the `Probot` library which is used for building GitHub apps.
+
+## Motivation
+
+NestJS and Probot are great frameworks that helps bootstrap projects for creating complex applications.
+That being said both have different configuration patterns and overall execution style. So to simplify Probot
+configuration and leverage the full extent of NestJS capabilities in such a way the building probot based
+github applications becomes declarative using decorators and event-handlers, we created this module.
+
+## Usage
+
+:::tip
+Before you can start testing probot with nestjs you will need to create a github app
+
+Please follow the instructions: [**how to create a github app?**](https://docs.github.com/en/developers/apps/building-github-apps/creating-a-github-app)
+:::
+
+### Install
+
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+
+    npm i --save @yieldbits/probot
+
+  </TabItem>
+  <TabItem value="yarn" label="YARN">
+
+    yarn add @yieldbits/probot
+
+  </TabItem>
+</Tabs>
+
+### Import
+
+Import and add `ProbotModule` to the `imports` section of your nestjs `app module`.
+It's common to inject it directly into app Module's constructor so that it can be used during the `onModuleInit`
+lifecycle hook at application startup.
+
+> app.module.ts
+
+```typescript
+import { ProbotModule } from '@yieldbits/probot';
+import { Module } from '@nestjs/common';
+
+@Module({
+  imports: [
+    ProbotModule.forRoot({
+      path: 'hook', # application path to with github will send events
+      config: {
+        appId: envConfig.GH_APP_ID,
+        clientId: envConfig.GH_CLIENT_ID,
+        clientSecret: envConfig.GH_CLIENT_SECRET,
+        privateKey: envConfig.GH_PRIVATE_KEY, # base64 converted value of your github private key
+        webhookSecret: envConfig.GH_WEBHOOK_SECRET, # optional
+        webhookProxy: envConfig.GH_WEBHOOK_PROXY, # optional
+        webhookPath: envConfig.GH_WEBHOOK_PATH, # optional
+      },
+    })
+  ]
+})
+export class ExampleModule {}
+```
+
+> app.controller.ts
+
+```typescript
+import { Controller, Get } from '@nestjs/common';
+import { Hook } from '@yieldbits/probot';
+
+@Controller()
+export class AppController {
+  @Get()
+  getHello(): string {
+    return 'Hello World!';
+  }
+
+  @Hook(['issue_comment.created'])
+  async hook(context) {
+    console.log(context);
+  }
+}
+```
+
+### Example
+
+:::info
+A full example of a nestjs application configured with probot module is available
+[**here**](https://github.com/yieldbits/nestjs/tree/main/integration/example)
+:::
+
+## Contribute
+
+Contributions welcome! Read the [contribution guidelines](https://github.com/yieldbits/nestjs/blob/main/contributing.md) first.
