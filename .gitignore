@@ -10,7 +10,8 @@ tsconfig.build.tsbuildinfo
 yarn-error.log
 *.pem
 *.txt
-
+.npmrc
+.env
 .pnp.*
 .yarn/*
 !.yarn/patches
