@@ -9,7 +9,7 @@ const config = {
   title: 'Yieldbits',
   tagline: 'a collection of nestjs modules',
   url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/nestjs',
+  baseUrl: '/nestjs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
