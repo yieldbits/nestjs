@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-rc.0 (2022-05-01)
+
+
+### Features
+
+* **probot:** yielbits probot package release ([b3064a4](https://github.com/yieldbits/nestjs/commit/b3064a44d336177d8c226e7df3c357193b1de930))
+
+
+
+
+
 ## 0.0.1-rc.11 (2022-05-01)
 
 **Note:** Version bump only for package @yieldbits/probot
