@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_yieldbits_nestjs_website=self.webpackChunk_yieldbits_nestjs_website||[]).push([[669],{6464:function(s){s.exports=JSON.parse('{"allTagsPath":"/nestjs/blog/tags","name":"docusaurus","count":4,"permalink":"/nestjs/blog/tags/docusaurus"}')}}]);
