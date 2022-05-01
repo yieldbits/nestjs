@@ -7,7 +7,7 @@
     "nestjs",
     "library"
   ],
-  "author": "Akshay Singh <8209379+akshayKrSingh@users.noreply.github.com>",
+  "author": "Null Key <8209379+null-key@users.noreply.github.com>",
   "homepage": "https://github.com/yieldbits/nestjs.git",
   "license": "MIT",
   "main": "lib/index.js",
