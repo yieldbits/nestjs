@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.2-rc.0 (2022-05-01)
+
+**Note:** Version bump only for package example
+
+
+
+
+
 # [2.3.0](https://github.com/golevelup/nestjs/compare/rabbitmq-integration@2.2.0...rabbitmq-integration@2.3.0) (2022-04-18)
 
 ### Features
