@@ -1,0 +1,28 @@
+{
+  "projectName": "nestjs",
+  "projectOwner": "yieldbits",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "null-key",
+      "name": "Null Key",
+      "avatar_url": "https://github.com/null-key.png",
+      "profile": "https://github.com/null-key",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug",
+        "doc",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}
