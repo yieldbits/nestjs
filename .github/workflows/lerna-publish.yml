@@ -15,4 +15,8 @@ jobs:
       - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: configure git user
+        run: |
+          git config --global user.email "team@spheres.cloud"
+          git config --global user.name "ci@yieldbits"
       - run: yarn lerna:publish
