@@ -57,7 +57,7 @@
     "lerna:prerelease": "yarn build && lerna publish prerelease --preid rc -m 'chore: publish prerelease'",
     "doc:watch": "lerna run build:watch --scope '@yieldbits/nestjs-website'",
     "doc:deploy": "lerna run deploy --scope '@yieldbits/nestjs-website'",
-    "build": " lerna run build --ignore 'example' --ignore '@yieldbits/nestjs-website'",
+    "build": " lerna run build --ignore 'example'",
     "build:watch": "lerna run --parallel build:watch",
     "clean": "rimraf packages/**/lib",
     "test": "jest",
