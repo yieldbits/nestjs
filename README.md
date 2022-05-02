@@ -16,7 +16,7 @@ Contributions welcome! Read the [contribution guidelines](./contributing.md) fir
 
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/null-key"><img src="https://github.com/null-key.png" width="100px;" alt=""/><br /><sub><b>Null Key</b></sub></a><br /><a href="https://github.com/yieldbits/nestjs/commits?author=null-key" title="Code">💻</a> <a href="#ideas-null-key" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/yieldbits/nestjs/issues?q=author%3Anull-key" title="Bug reports">🐛</a> <a href="https://github.com/yieldbits/nestjs/commits?author=null-key" title="Documentation">📖</a> <a href="https://github.com/yieldbits/nestjs/pulls?q=is%3Apr+reviewed-by%3Anull-key" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/akshayKrSingh"><img src="https://github.com/akshayKrSingh.png" width="100px;" alt=""/><br /><sub><b>Null Key</b></sub></a><br /><a href="https://github.com/yieldbits/nestjs/commits?author=akshayKrSingh" title="Code">💻</a> <a href="#ideas-akshayKrSingh" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/yieldbits/nestjs/issues?q=author%3AakshayKrSingh" title="Bug reports">🐛</a> <a href="https://github.com/yieldbits/nestjs/commits?author=akshayKrSingh" title="Documentation">📖</a> <a href="https://github.com/yieldbits/nestjs/pulls?q=is%3Apr+reviewed-by%3AakshayKrSingh" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 
