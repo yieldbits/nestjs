@@ -22,5 +22,5 @@ jobs:
           git config --global user.email "team@spheres.cloud"
           git config --global user.name "ci@yieldbits"
       - run: yarn build
-      - run: yarn lerna version --conventional-commits --conventional-graduate --yes
+      - run: yarn lerna version --conventional-commits --yes
       - run: yarn lerna publish from-git --yes --no-verify-access
