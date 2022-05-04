@@ -5,7 +5,8 @@
   "keywords": [
     "probot",
     "nestjs",
-    "library"
+    "library",
+    "github-apps"
   ],
   "author": "Null Key <8209379+null-key@users.noreply.github.com>",
   "homepage": "https://github.com/yieldbits/nestjs.git",
