@@ -64,6 +64,8 @@ Import and add `ProbotModule` to the `imports` section of your nestjs `app modul
 It's common to inject it directly into app Module's constructor so that it can be used during the `onModuleInit`
 lifecycle hook at application startup.
 
+#### Using synchronous configuration
+
 > app.module.ts
 
 ```typescript
@@ -83,6 +85,54 @@ import { Module } from '@nestjs/common';
         webhookProxy: envConfig.GH_WEBHOOK_PROXY, # optional
         webhookPath: envConfig.GH_WEBHOOK_PATH, # optional
       },
+    })
+  ]
+})
+export class ExampleModule {}
+```
+
+> app.controller.ts
+
+```typescript
+import { Controller, Get } from '@nestjs/common';
+import { Hook } from '@yieldbits/probot';
+
+@Controller()
+export class AppController {
+  @Get()
+  getHello(): string {
+    return 'Hello World!';
+  }
+
+  @Hook(['issue_comment.created'])
+  async hook(context) {
+    console.log(context);
+  }
+}
+
+```#### Using asynchronous configuration
+
+> app.module.ts
+
+```typescript
+import { ProbotModule } from '@yieldbits/probot';
+import { Module } from '@nestjs/common';
+
+@Module({
+  imports: [
+    ProbotModule.forRootAsync({
+      isGlobal: true, # (optional), defaults to true
+      path: 'hook', # application path to with github will send events
+      useFactory: (envConfig: ConfigService) => ({
+        appId: envConfig.GH_APP_ID,
+        clientId: envConfig.GH_CLIENT_ID,
+        clientSecret: envConfig.GH_CLIENT_SECRET,
+        privateKey: envConfig.GH_PRIVATE_KEY, # base64 converted value of your github private key
+        webhookSecret: envConfig.GH_WEBHOOK_SECRET, # optional
+        webhookProxy: envConfig.GH_WEBHOOK_PROXY, # optional
+        webhookPath: envConfig.GH_WEBHOOK_PATH, # optional
+      }),
+      inject: [ConfigService],
     })
   ]
 })

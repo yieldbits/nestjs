@@ -1,3 +1,5 @@
+import { ModuleMetadata } from '@nestjs/common';
+
 export interface ProbotConfig {
   appId: string;
   privateKey: string;
@@ -18,10 +20,18 @@ export interface OctokitConfig {
   probot: ProbotConfig;
 }
 
-export interface ModuleOptions {
+export interface ProbotModuleOptions {
   isGlobal?: boolean;
   path: string;
   config: ProbotConfig;
+}
+
+export interface ProbotModuleAsyncOptions
+  extends Pick<ModuleMetadata, 'imports'> {
+  isGlobal?: boolean;
+  path: string;
+  useFactory: (...args: any[]) => Promise<ProbotConfig> | ProbotConfig;
+  inject?: any[];
 }
 
 export enum ProbotMetadata {

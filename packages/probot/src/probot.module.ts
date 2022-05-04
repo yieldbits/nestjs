@@ -1,5 +1,9 @@
 import { DynamicModule, Module } from '@nestjs/common';
-import { ModuleOptions, ModuleProviders } from './probot.types';
+import {
+  ProbotModuleOptions,
+  ModuleProviders,
+  ProbotModuleAsyncOptions,
+} from './probot.types';
 import { DiscoveryModule } from '@golevelup/nestjs-discovery';
 import { ProbotDiscovery } from './probot.discovery';
 import { getControllerClass } from './hook.controller';
@@ -8,7 +12,7 @@ import { getControllerClass } from './hook.controller';
   imports: [DiscoveryModule],
 })
 export class ProbotModule {
-  static forRoot(options: ModuleOptions): DynamicModule {
+  static forRoot(options: ProbotModuleOptions): DynamicModule {
     const { path: hookPath } = options;
     const HookController = getControllerClass({ path: hookPath });
     return {
@@ -19,6 +23,24 @@ export class ProbotModule {
         {
           provide: ModuleProviders.ProbotConfig,
           useFactory: () => options.config,
+        },
+        ProbotDiscovery,
+      ],
+    };
+  }
+
+  static forRootAsync(options: ProbotModuleAsyncOptions): DynamicModule {
+    const { path: hookPath } = options;
+    const HookController = getControllerClass({ path: hookPath });
+    return {
+      module: ProbotModule,
+      global: options.isGlobal || true,
+      controllers: [HookController],
+      providers: [
+        {
+          provide: ModuleProviders.ProbotConfig,
+          useFactory: options.useFactory,
+          inject: options.inject || [],
         },
         ProbotDiscovery,
       ],
