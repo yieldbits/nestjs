@@ -8,10 +8,12 @@ import {
 } from '@nestjs/common';
 import * as _ from 'lodash';
 import { v4 } from 'uuid';
-import { DiscoveryService } from '@golevelup/nestjs-discovery';
-import { ModuleProviders, ProbotConfig, ProbotMetadata } from './probot.types';
+import { ModuleProviders, ProbotConfig } from './probot.types';
 import { createProbot, createSmee } from './probot.helpers';
 import { Probot } from 'probot';
+import { HookMetadataAccessor } from './hook-metadata.accessor';
+import { DiscoveryService, MetadataScanner } from '@nestjs/core';
+import { InstanceWrapper } from '@nestjs/core/injector/instance-wrapper';
 
 @Injectable()
 export class ProbotDiscovery
@@ -27,6 +29,8 @@ export class ProbotDiscovery
 
   constructor(
     private readonly discoveryService: DiscoveryService,
+    private readonly metadataAccessor: HookMetadataAccessor,
+    private readonly metadataScanner: MetadataScanner,
     @Inject(ModuleProviders.ProbotConfig) private readonly config: ProbotConfig
   ) {
     this.hooks = new Map<string, any>();
@@ -34,15 +38,7 @@ export class ProbotDiscovery
   }
 
   public async onModuleInit() {
-    const discoveredHooks: any = [
-      ...(await this.discoveryService.controllerMethodsWithMetaAtKey(
-        ProbotMetadata.name
-      )),
-    ];
-
-    _.each(discoveredHooks, (hook) => {
-      this.hooks.set(v4(), hook);
-    });
+    this.explore();
   }
 
   onApplicationBootstrap(): any {
@@ -66,8 +62,7 @@ export class ProbotDiscovery
           on: (arg0: any, arg1: (context: any) => Promise<void>) => any;
         }) => {
           this.hooks.forEach((hook) => {
-            const { meta, discoveredMethod } = hook;
-            app.on(meta.events, this.initContext(discoveredMethod.handler));
+            app.on(hook.eventOrEvents, this.initContext(hook.target));
           });
         }
       )
@@ -80,6 +75,60 @@ export class ProbotDiscovery
   initContext(fn: (context: any) => any) {
     return async (context: any) => {
       await fn(context);
+    };
+  }
+
+  explore() {
+    const instanceWrappers: InstanceWrapper[] = [
+      ...this.discoveryService.getControllers(),
+      ...this.discoveryService.getProviders(),
+    ];
+
+    instanceWrappers
+      .filter((wrapper) => wrapper.isDependencyTreeStatic())
+      .forEach((wrapper: InstanceWrapper) => {
+        const { instance } = wrapper;
+
+        if (!instance || !Object.getPrototypeOf(instance)) {
+          return;
+        }
+
+        this.metadataScanner.scanFromPrototype(
+          instance,
+          Object.getPrototypeOf(instance),
+          (key: string) => this.lookupHooks(instance, key)
+        );
+      });
+  }
+
+  lookupHooks(instance: Record<string, () => any>, key: string) {
+    const methodRef = instance[key];
+    const hookMetadata = this.metadataAccessor.getWebhookEvents(methodRef);
+    const hookFn = this.wrapFunctionInTryCatchBlocks(methodRef, instance);
+
+    // filter functions that do not have a webhook event definition
+    if (_.isEmpty(hookMetadata)) {
+      return null;
+    }
+
+    return this.hooks.set(v4(), {
+      target: hookFn,
+      eventOrEvents: hookMetadata,
+    });
+  }
+
+  private wrapFunctionInTryCatchBlocks(
+    methodRef: () => any,
+    instance: Record<string, any>
+  ) {
+    return async (...args: unknown[]) => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await methodRef.call(instance, ...args);
+      } catch (error) {
+        this.logger.error(error);
+      }
     };
   }
 

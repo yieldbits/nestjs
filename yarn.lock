@@ -2589,15 +2589,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@golevelup/nestjs-discovery@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@golevelup/nestjs-discovery@npm:3.0.0"
-  dependencies:
-    lodash: ^4.17.15
-  checksum: 62d60b3da8604dc131f38fcf965fcbbb0fdce37af7d71c71710fa14b8ac1df80d22b45d3ecbe5da9bc55a233079ae031778f34b07fc5d19bda082a0345cab87f
-  languageName: node
-  linkType: hard
-
 "@hapi/bourne@npm:^2.0.0":
   version: 2.1.0
   resolution: "@hapi/bourne@npm:2.1.0"
@@ -5602,7 +5593,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@yieldbits/probot@workspace:packages/probot"
   dependencies:
-    "@golevelup/nestjs-discovery": ^3.0.0
     "@octokit/auth-app": ^3.6.1
     "@octokit/rest": ^18.12.0
     "@octokit/webhooks": ^9.24.0

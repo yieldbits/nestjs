@@ -52,7 +52,6 @@
     "testEnvironment": "node"
   },
   "dependencies": {
-    "@golevelup/nestjs-discovery": "^3.0.0",
     "@octokit/auth-app": "^3.6.1",
     "@octokit/rest": "^18.12.0",
     "@octokit/webhooks": "^9.24.0",

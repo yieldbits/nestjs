@@ -1,7 +1,11 @@
 import { applyDecorators, SetMetadata } from '@nestjs/common';
-import { ProbotMetadata } from './probot.types';
-import { EmitterWebhookEventName } from '@octokit/webhooks';
+import { EmitterWebhookEventName } from '@octokit/webhooks/dist-types/types';
 
-export function Hook(events: EmitterWebhookEventName[]): MethodDecorator {
-  return applyDecorators(SetMetadata(ProbotMetadata.name, { events }));
+/**
+ * Sets up hook trigger on functions.
+ */
+export function Hook(
+  eventOrEvents: EmitterWebhookEventName[]
+): MethodDecorator {
+  return applyDecorators(SetMetadata('HOOK_EVENTS', { eventOrEvents }));
 }

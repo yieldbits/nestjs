@@ -1,8 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { Hook } from '@yieldbits/probot';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  constructor(private readonly appService: AppService) {}
+
   @Get()
   getHello(): string {
     return 'Hello World!';
@@ -10,6 +13,6 @@ export class AppController {
 
   @Hook(['issue_comment.created'])
   async hook(context) {
-    console.log(context);
+    this.appService.sample(context);
   }
 }

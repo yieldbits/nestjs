@@ -4,9 +4,10 @@ import {
   ModuleProviders,
   ProbotModuleAsyncOptions,
 } from './probot.types';
-import { DiscoveryModule } from '@golevelup/nestjs-discovery';
 import { ProbotDiscovery } from './probot.discovery';
 import { getControllerClass } from './hook.controller';
+import { DiscoveryModule } from '@nestjs/core';
+import { HookMetadataAccessor } from './hook-metadata.accessor';
 
 @Module({
   imports: [DiscoveryModule],
@@ -24,6 +25,7 @@ export class ProbotModule {
           provide: ModuleProviders.ProbotConfig,
           useFactory: () => options.config,
         },
+        HookMetadataAccessor,
         ProbotDiscovery,
       ],
     };
@@ -42,6 +44,7 @@ export class ProbotModule {
           useFactory: options.useFactory,
           inject: options.inject || [],
         },
+        HookMetadataAccessor,
         ProbotDiscovery,
       ],
     };

@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ProbotModule } from '@yieldbits/probot';
 import * as dotenv from 'dotenv';
+import { AppService } from './app.service';
 
 const { parsed: envConfig } = dotenv.config();
 
@@ -21,5 +22,6 @@ const { parsed: envConfig } = dotenv.config();
     }),
   ],
   controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
