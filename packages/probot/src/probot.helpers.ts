@@ -39,7 +39,7 @@ export const createSmee = (config: ProbotConfig) => {
   });
 };
 
-export const createOctokit = (config: OctokitConfig) => {
+export const createOctokit = (config: OctokitConfig): Octokit => {
   return new Octokit({
     authStrategy: createAppAuth,
     baseUrl: config.probot.ghUrl,

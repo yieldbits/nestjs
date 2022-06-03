@@ -9,7 +9,7 @@ import {
 import * as _ from 'lodash';
 import { v4 } from 'uuid';
 import { ModuleProviders, ProbotConfig } from './probot.types';
-import { createProbot, createSmee } from './probot.helpers';
+import { createOctokit, createProbot, createSmee } from './probot.helpers';
 import { Probot } from 'probot';
 import { HookMetadataAccessor } from './hook-metadata.accessor';
 import { DiscoveryService, MetadataScanner } from '@nestjs/core';
@@ -74,6 +74,13 @@ export class ProbotDiscovery
 
   initContext(fn: (context: any) => any) {
     return async (context: any) => {
+      if (_.get(context, 'installation.id')) {
+        context.octokit = createOctokit({
+          auth: { installationId: _.get(context, 'installation.id') },
+          probot: this.config,
+        });
+      }
+
       await fn(context);
     };
   }
