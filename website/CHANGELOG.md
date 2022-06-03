@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.2 (2022-05-07)
+
+
+### Bug Fixes
+
+* **probot:** remove @golevelup/nestjs-discovery ([6ea0b61](https://github.com/yieldbits/nestjs/commit/6ea0b61817b27bb5e19e26240e2452e9d7846826))
+
+
+
+
+
 ## 0.1.1 (2022-05-04)
 
 **Note:** Version bump only for package @yieldbits/nestjs-website
