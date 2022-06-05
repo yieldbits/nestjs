@@ -66,7 +66,8 @@
     "test:ci:integration": "NODE_ENV=ci jest --config ./jest-e2e.json --forceExit",
     "test:ci": "jest --coverage --coverageReporters=cobertura --coverageReporters=html",
     "lint": "eslint --ext ts .",
-    "contributors:generate": "all-contributors generate"
+    "contributors:generate": "all-contributors generate",
+    "all": "git add . && yarn commit && git push"
   },
   "husky": {
     "hooks": {
